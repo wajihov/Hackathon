@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cssCalendrier.css">
 </head>
 
 <body>
@@ -33,7 +34,9 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo">
+                         <a class="navbar-brand" href="index.html"> 
+                                <h1 style="color: white">Hackathons</h1> 
+                            <!--<img src="img/logo.png" alt="logo"> -->
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -45,15 +48,10 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                
+                                </li>                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="prize.html">prize</a>
                                 </li>
-                              
-                                </li>
-                              
-                                
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Hackathons</a>
                                 </li>
@@ -91,7 +89,7 @@
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
                         <article class="blog_item">
-                            <div class="blog_item_img">
+                            <!-- <div class="blog_item_img">
                                 <img class="card-img rounded-0" src="img/blog/single_blog_1.png" alt="">
                                 <a href="#" class="blog_item_date">
                                     <h3>15</h3>
@@ -109,7 +107,48 @@
                                     <li><a href="#"><i class="far fa-user"></i> Travel, Lifestyle</a></li>
                                     <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
+                            <div id="calendar-container" class="container table table-bordered table-responsive-sm">
+                                    <div id="calendar-header">            
+                                        <button class="btn btn-outline-primary col-sm-3" onclick="previous()">Previous</button>
+                                        <span id="calendar-month-year">Test</span>
+                                        <!-- <span id="calendar-month-year">Test2</span>
+                                        <span><i class="fab fa-github btn btn-dark btn-lg"></i></span> -->
+                                        <button class="btn btn-outline-primary col-sm-3" onclick="next()">Next</button>
+                                    </div>
+                                    <div id="calendar-dates" class="">
+                                    </div>
+                                </div>
+                            
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <span class="close">&times;</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="desc">Description:</label>
+                                                <input type="text" class="form-control" id="txtDesc" placeholder="Enter la tâche" >
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dateDebut">Date debut:</label>
+                                                <input type="date" class="form-control" id="startDate">
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="dateFin">Date Fin:</label>
+                                                    <input type="date" class="form-control" id="endDate">
+                                            </div>
+                                            
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <h3>Modal Footer</h3>
+                                        </div> -->
+                                    </div>
+                                
+                                </div>
                         </article>
 
                         <article class="blog_item">
@@ -519,7 +558,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="js/mail-script.js"></script>
         <!-- custom js -->
         <script src="js/custom.js"></script>
-        
+        <script src="js/jsCalendrier.js"></script>
         
     </body>
     
