@@ -49,8 +49,8 @@ for (i=0;i<listUser.length;i++) {
 
  if (listUser[i].mail==login && listUser[i].password==passs) {
       test=true ; 
-alert("Hello world ") ; 
-    //   window.location.href="Dashboard.html"
+// alert("Hello world ") ; 
+     window.location.href="../dashboard.html";
       localStorage.setItem("actifUser", JSON.stringify(listUser[i].id)) ;
 
  }
