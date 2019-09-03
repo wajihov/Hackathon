@@ -6,47 +6,60 @@ function ajoutuser () {
     }
 var inff = {
 
-    
            id: Math.floor(Math.random()*100000+1) ,
            fname: document.getElementById("name").value ,
-           email : document.getElementById("email").value ,
+           mail : document.getElementById("email").value ,
            password :document.getElementById("pass").value ,
            repass : document.getElementById("re_pass").value 
 };
 
 
-if (tableau[i].repass)
+
 
     tableau.push(inff);    
     
 window.localStorage.setItem("tableau",JSON.stringify(tableau)) ;
 
+reset() ; 
+}
+
+function reset() {
+
+    fname=document.getElementById("name").value="";
+    mail =document.getElementById("email").value="" ;
+    password =document.getElementById("pass").value="" ;
+    repass = document.getElementById("re_pass").value="" ;  
+
+}
+
+
+
+function login () {
+    var listUser =JSON.parse(localStorage.getItem("tableau")) ;
+    var userActif =JSON.parse(localStorage.getItem("actifUser"));
+   if (listUser==null) {
+       listUser=[] ; 
+ }
+   var login = document.getElementById("your_name").value  ; 
+   var passs = document.getElementById("your_pass").value ; 
+  
+  
+test=false ; 
+for (i=0;i<listUser.length;i++) {
+
+ if (listUser[i].mail==login && listUser[i].password==passs) {
+      test=true ; 
+alert("Hello world ") ; 
+    //   window.location.href="Dashboard.html"
+      localStorage.setItem("actifUser", JSON.stringify(listUser[i].id)) ;
+
+ }
+   
+
+}   
 }
 
 
 
 
-// function log () {
-//     var listuser =JSON.parse(localStorage.getItem("tab")) 
-//     var useractif =JSON.parse(localStorage.getItem("useractif")) 
-//    if (listuser==null) {
-//        listuser=[] ; 
-//  }
-//    var mail = document.getElementById("mail").value  ; 
-//    var password = document.getElementById("pass").value ; 
-  
-  
-// test=false ; 
-// for (i=0;i<listlog.length;i++) {
- 
-
-//  if (listuser[i].email==mail && listuser[i].password==password) {
-//       test=true ; 
-//       alert("hello world");
-//       localStorage.setItem("useractif", JSON.stringify(listuser[i].id)) ;
- 
-//  }
-// if (test==false) {
-// document.getElementById("errorlogin").innerHTML="Verifiez vos cordonnèes" ; 
-// }   
 
