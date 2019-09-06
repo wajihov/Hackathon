@@ -239,7 +239,8 @@ h5 {
 
 /* line 133, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_common.scss */
 img {
-  max-width: 100%;
+   max-width: 400%; 
+   /*height: 20%;*/
 }
 
 /* line 136, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_common.scss */

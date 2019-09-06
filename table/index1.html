@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Acueill</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./style.css'>
+    <script src='main.js'></script>
+</head>
+
+<body onload="add()">
+
+
+    <div class="navbar">
+        
+    </div>
+
+
+    <div class="left">
+        
+        <button class="getstarted" onclick="add()">ADD</button>
+        <tr><br> <button class="getstarted" onclick="display()">Display</button></br></tr>
+    </div>
+
+
+    <div class="right">
+        <div id="add">
+            
+            <br> <label><h3>Nom</h3</label></br>
+            <input class="ipt" type="text" id="task"placeholder="Nom">
+
+            <br> <label><h3>Description</h3</label></br>
+            <input class="ipt" type="text" id="date" placeholder="Description">
+
+            <br> <label> <h3>Quantité</h3</label></br>
+            <input class="ipt" type="number" id="Quantité" placeholder="Quantité">
+
+            <br> <label><h3>Prix</h3</label></br>
+            <input class="ipt" type="number" id="Prix" placeholder="Prix"> 
+
+            <br>
+            <label> <h3></h3>image</h3</label><br />
+
+            <input class="ipt" type="file" id="img" placeholder="image">
+            <div class="image-container">
+                <img src="" id="image" />
+            </div></br>
+
+
+            <!--   <br> <label>Image</label>
+        <input type="image" id="image" > </br> -->
+            <input class="down" type="button" value="Add" onclick="addTask()">
+        </div>
+
+
+        <div id="edit">
+
+            <label>Nom</label>
+            <input type="text" id="taskE">
+            <br> <label>Description</label>
+            <input type="text" id="dateE"> </br>
+            <br> <label>Quantité</label>
+            <input type="number" id="QuantitéE"> </br>
+            <br> <label>Prix</label>
+            <input type="number" id="PrixE"> </br>
+            <br> <label>Image</label>
+            <input type="image" id="imageE"> </br>
+            <input type="text" id="index"> </br>
+            <input class="down" type="button" value="Save" onclick="SaveEdit()">
+            <input class="down" type="button" value="Annuler" onclick="annuler()">
+        </div>
+        <div id='table'>
+
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

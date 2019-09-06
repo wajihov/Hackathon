@@ -1,0 +1,12 @@
+
+.table {
+    border-style: white;
+    padding: 15px 300px;
+    border-bottom: 1px solid white;
+}
+tr {
+    border-bottom: 1px solid white;
+}
+td {
+    border-bottom: 1px solid white;
+}

@@ -1,0 +1,37 @@
+ 
+ .left{
+
+    width: 20%;
+    height: 500px;
+    float: left;
+}  
+/* .right{
+
+    width: 80%;
+    float: right;
+    height: 80px;
+        
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+} */    
+    /* body{
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: url(document.png);
+        background-size: cover;
+    } */
+    .ipt{
+        height: 35px;
+        width: 150px;
+        margin-top:10px;
+        margin-left: 05px;
+        border-radius: 03px;
+        border: none;
+        border: 1px solid #95a5a6;
+        padding-left: 10px;
+        font-size: 20px; }
+
+        
+   
