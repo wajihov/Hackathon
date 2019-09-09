@@ -115,14 +115,15 @@
                             </div> -->
                             <div id="calendar-container" class="container table table-bordered table-responsive-sm">
                                 <div id="calendar-header">
-                                    <button class="btn btn-outline-primary col-sm-3"
-                                        onclick="previous()">Previous</button>
+                                    <button class="btn btn-outline-primary col-sm-2"
+                                        onclick="previousYear()">&#60&#60</button>
+                                    <button class="btn btn-outline-primary col-sm-2" onclick="previous()">&#60</button>
                                     <span id="calendar-month-year">Test</span>
-                                    <!-- <span id="calendar-month-year">Test2</span>
-                                        <span><i class="fab fa-github btn btn-dark btn-lg"></i></span> -->
-                                    <button class="btn btn-outline-primary col-sm-3" onclick="next()">Next</button>
+                                    <button class="btn btn-outline-primary col-sm-2" onclick="next()">&#62</button>
+                                    <button class="btn btn-outline-primary col-sm-2"
+                                        onclick="nextYear()">&#62&#62</button>
                                 </div>
-                                <div id="calendar-dates" class="">
+                                <div id="calendar-dates">
                                 </div>
                             </div>
 
@@ -137,18 +138,20 @@
                                         <div class="form-group">
                                             <label for="desc">Description:</label>
                                             <input type="text" class="form-control" id="txtDesc"
-                                                placeholder="Enter la tâche">
+                                                placeholder="Enter la tâche...">
                                         </div>
                                         <div class="form-group">
                                             <label for="dateDebut">Date debut:</label>
-                                            <input type="date" class="form-control" id="startDate">
+                                            <input type="date" class="form-control" id="startDate" readonly>
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFin">Date Fin:</label>
                                             <input type="date" class="form-control" id="endDate">
+                                            <span id="error"></span>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-primary" onclick="ajouterEvenement()"
+                                            id="saveEvent">Submit</button>
                                     </div>
                                     <!-- <div class="modal-footer">
                                             <h3>Modal Footer</h3>
@@ -546,7 +549,6 @@
 
     <!-- jquery plugins here-->
     <script src="js/jquery-1.12.1.min.js"></script>
-    <script src="js/jsCalendrier.js"></script>
     <!-- popper js -->
     <script src="js/popper.min.js"></script>
     <!-- bootstrap js -->
@@ -570,8 +572,8 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
-  
     <script src="js/custom.js"></script>
+    <script src="js/jsCalendrier.js"></script>
 
 </body>
 

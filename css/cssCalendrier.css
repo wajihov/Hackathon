@@ -44,8 +44,16 @@ th{
 
 .today{
     background: blue;
-    color: #fff;    
+    color: #fff;  
+    border: 2px solid black;      
 }
+
+.eventDate{
+    border: 2px solid rgb(58, 4, 253);
+    background: rgb(48, 247, 9);
+    color: blue;
+}
+
 td:hover{
     background-color: red;
 }
