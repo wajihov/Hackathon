@@ -71,9 +71,8 @@ function ajout_soc() {
         id: Math.floor(Math.random() * 100000 + 1),
         name: document.getElementById("name2").value,
         mail: document.getElementById("email2").value,
-        password: document.getElementById("adress").value,
-        repass: document.getElementById("phone").value,
-        repass: document.getElementById("pass2").value,
+        password: document.getElementById("pass2").value,
+        phone: document.getElementById("phone").value,
         repass: document.getElementById("re_pass2").value
 
     };
