@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Hackathon 💪💡</title>
-    <!-- <link rel="icon" href="img/favicon.png"> -->
+    <link rel="icon" href="img/favicon.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -33,7 +33,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <h1 style="color: white">Hackathons</h1>  </a>
+                        <a class="navbar-brand" href="index.html"><h1 style="color: white">Hackathons</h1>
+                        </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -41,38 +42,21 @@
                         </button>
 
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="team.html">Our team</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="prize.html">Prize</a>
-                                </li>
-                            
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown1"
-                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                                        <a class="dropdown-item" href="elements.html">Elements</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="dropdown">
-                                <button  class="dropbtn">Sing in</button>
-                                <div class="dropdown-content">
-                                <a href="collorlib/singin.html">condidat</a>
-                                <a href="collorlib/singinS.html">sociètè</a>
-                                </div>
-                            </div>                     </nav>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">Produits</a>
+                                    </li>                                
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="prize2.html">prize</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="dashboard.html">Hackathons</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+<button onclick="logout();" style="border-radius: 100px; background-color: orangered ; width: 15%; ; border: none;padding: 16px;text-transform: uppercase;color: white"; > Logout</button>                        
+                    </nav>
                 </div>
             </div>
         </div>
@@ -80,21 +64,72 @@
     <!--::Header part end::-->
 
     <!-- breadcrumb start-->
-    <section class="breadcrumb breadcrumb_bg">
+    <section style="background-color: black" class="breadcrumb breadcrumb_bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="breadcrumb_iner text-center">
+                    <div style="height: 250px" class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
-                            <h2>Our team</h2>
-                            <h5>home <span></span>team</h5>
+                            <h2>prize to win
+                            </h2>
+                            <h5>home <span></span> Prize</h5>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+    <!-- breadcrumb start-->
+
+    <!--::pricing part start::-->
+    <section class="pricing_part section_padding home_page_pricing">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section_tittle text-center">
+                        <h2>Prize to win</h2>
+                        <p>Life firmament under them evening make after called dont
+                            saying likeness isn't wherein also forth she'd air two without</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_pricing_part">
+                        <img src="img/icon/pricing_icon_1.png" alt="">
+                        <p>Standard</p>
+                        <h3>$1000 <span>/ mo</span></h3>
+                   
+                        <a href="#" class="pricing_btn">Purchase Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                 
+                </div>
+                <div style="margin-left: 5px" class="col-lg-3 col-sm-6">
+                    <div  class="single_pricing_part">
+                        <img src="img/icon/pricing_icon_3.png" alt="">
+                        <p>Premium</p>
+                        <h3>$60.00 <span>/ mo</span></h3>
+                   
+                        <a href="#" class="pricing_btn">Purchase Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single_pricing_part">
+                        <img src="img/icon/pricing_icon_4.png" alt="">
+                        <p>Ultimate</p>
+                        <h3>$80.00 <span>/ mo</span></h3>
+                     
+                        <a href="#" class="pricing_btn">Purchase Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img src="img/animate_icon/Ellipse_2.png" alt="" class="feature_icon_2 custom-animation2">
+    </section>
+   
+
     <!--::footer_part start::-->
     <footer class="footer_part">
         <div class="container">
@@ -205,6 +240,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/mail-script.js"></script>
     <!-- custom js -->
     <script src="js/custom.js"></script>
+    <script src="collorlib/condidat.js"></script>
 </body>
 
 </html>

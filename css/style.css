@@ -6008,6 +6008,13 @@ h1, h2, h3, h4, h5, h6 {
   display: table;
 }
 
+
+.breadcrumb {
+  height: 230px;
+  width: 100%;
+  display: table;
+}
+
 /* line 12, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_breadcrumb.scss */
 .breadcrumb .breadcrumb_iner .breadcrumb_iner_item {
   display: table-cell;
@@ -6105,7 +6112,7 @@ h1, h2, h3, h4, h5, h6 {
   /* line 2, ../../01 cl html template/03_jun 2019/185 Ecobit SAAS html/sass/_footer.scss */
   .footer_part {
     padding: 70px 0px 25px;
-    background-image: url("none");
+    /* background-image: url("none"); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
