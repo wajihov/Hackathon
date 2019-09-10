@@ -1,30 +1,19 @@
-var d = new Date();
-var month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+let d = new Date();
+let ColorList = ['red', 'green', 'yellow', 'blue', 'orange']
+let month_name = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     'August', 'September', 'October', 'November', 'December'];
 // var month_name=['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin'
 // , 'Juillet', 'Aôut', 'September', 'October', 'November', 'Décember'];
-var day_week = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-var month = d.getMonth();   //0-11
-var year = d.getFullYear(); //2019
+let day_week = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
+let month = d.getMonth();   //0-11
+let year = d.getFullYear(); //2019
 let activateDateToday;
 let event;
 
 window.onload = function () {
     actualize(month, year);
     refreshCalendar(month, year);
-    let listEven = JSON.parse(localStorage.getItem("MyEvents"));
-
-    if (listEven != null) {
-        for (item in listEven) {
-            // console.log(listEven[item].idEvent, " / ", listEven[item].dateDebut, " / ", listEven[item].dateFin);
-            if (listEven[item].dateDebut) {
-                //document.getElementById("myTable").rows[0].cells[0].innerHTML = "*";
-            }
-        }
-    }
 };
-
-
 
 function clickAddEvent() {
     var tds = document.getElementsByTagName("td");
@@ -40,12 +29,16 @@ function addEvent() {
 }
 
 function ajouterEvenement() {
+
+    console.log("Helooo");
+
     let dateDebut = document.getElementById("startDate").value;
     let dateFin = document.getElementById("endDate").value;
+
     if (dateFin < dateDebut) {
         let msg = "Date invalid";
         document.getElementById("error").innerHTML = msg;
-        document.getElementById("endDate").style.background = "rgb(248, 90, 90)";
+        //document.getElementById("endDate").style.background = "rgb(248, 90, 90)";
         modal.style.display = "block";
     }
     else {
@@ -57,7 +50,8 @@ function ajouterEvenement() {
             idEvent: Math.random().toString(36).substr(2, 9),
             description: document.getElementById("txtDesc").value,
             dateDebut: document.getElementById("startDate").value,
-            dateFin: document.getElementById("endDate").value
+            dateFin: document.getElementById("endDate").value,
+            colorEvent: verifColor(dateDebut, dateFin)
         }
         listEven.push(evenement);
         localStorage.setItem("MyEvents", JSON.stringify(listEven));
@@ -65,21 +59,44 @@ function ajouterEvenement() {
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
     resetModal();
+    refreshCalendar(month, year);
 };
+
+function verifColor(debut, fin) {
+
+    console.log("debut ", colorEvent(debut), " ", colorEvent(fin));
+
+    let moiS = colorEvent(debut).m;
+    let anneE = colorEvent(debut).a;
+    let moiS2 = colorEvent(fin).m;
+    let anneE2 = colorEvent(fin).a;
+    let listEven = JSON.parse(localStorage.getItem("MyEvents"));
+    colorChoisi = ColorList[Math.floor(Math.random() * ColorList.length)];
+    if (listEven != null) {
+        for (e = 0; e < listEven.length; e++) {
+            if (colorEvent(fin).m == colorEvent(listEven[e].dateDebut).m
+                && colorEvent(fin).a == colorEvent(listEven[e].dateDebut).a) {
+                console.log("La date est ", e, " ", listEven[e]);
+                while (listEven[e].colorEvent == colorChoisi) {
+                    colorChoisi = ColorList[Math.floor(Math.random() * ColorList.length)];
+                }
+            }
+        }
+    }
+
+    return colorChoisi;
+}
 
 function getval(cel) {
     month += 1;
     if (month < 10) {
-        month = '0' + month.toString()
-        console.log(month);
+        month = '0' + month.toString();
     }
     let day = cel.innerHTML
     if (day < 10) {
-        day = '0' + day.toString()
-        console.log(day);
+        day = '0' + day.toString();
     }
     let selectDate = year + "-" + month + "-" + day;
-
     month -= 1;
     var modal = document.getElementById("myModal");
     // Get the <span> element that closes the modal
@@ -91,8 +108,6 @@ function getval(cel) {
         modal.style.display = "none";
         resetModal();
     }
-    console.log(selectDate);
-
     document.getElementById('startDate').value = selectDate;
 
     // When the user clicks anywhere outside of the modal, close it
@@ -131,44 +146,23 @@ function actualize(month, year) {
 }
 
 function colorEvent(datEvt) {
-    console.log("La date est : ", datEvt);
     let dateEvent = new Date(datEvt);
     let j = dateEvent.getDate();
     let m = dateEvent.getMonth();
     let a = dateEvent.getFullYear();
     return { j, m, a };
 }
+
+
 function get_calendar(day_no, days, activateDateToday, mois, annee) {
     var todaysDate;
-    var colorDay = [colorEvent("september , 2019 12"), colorEvent("september , 2019 21"),
-    colorEvent("september , 2019 1"), colorEvent("september , 2019 25"), colorEvent("August , 2019 29")
-        , colorEvent("October , 2019 22"), colorEvent("january , 2019 10"), colorEvent("November , 2019 30")
-        , colorEvent("November , 2019 4")];
+    // var colorDay = [colorEvent("september , 2019 12"), colorEvent("september , 2019 21"),
+    // colorEvent("september , 2019 1"), colorEvent("september , 2019 25"), colorEvent("August , 2019 29")
+    //     , colorEvent("October , 2019 22"), colorEvent("january , 2019 10"), colorEvent("November , 2019 30")
+    //     , colorEvent("November , 2019 4")];
 
     let listEven = JSON.parse(localStorage.getItem("MyEvents"));
-
-    console.log("La liste est ", listEven);
-    for (item in listEven) {
-        console.log("date debut ", colorEvent(listEven[item].dateDebut).a, " / ",
-            colorEvent(listEven[item].dateDebut).m, " / ", colorEvent(listEven[item].dateDebut).j, " ",
-            listEven[item].dateFin);
-
-    }
-
-
-    if (listEven != null) {
-        for (item in listEven) {
-            // console.log(listEven[item].idEvent, " / ", listEven[item].dateDebut, " / ", listEven[item].dateFin);
-            if (listEven[item].dateDebut) {
-                //document.getElementById("myTable").rows[0].cells[0].innerHTML = "*";
-            }
-        }
-    }
-
-
-
     console.log("le mois ", mois, " / ", annee);
-
     if (activateDateToday == true) {
         todaysDate = new Date().getDate();
     }
@@ -197,19 +191,46 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
         tr.appendChild(td);
     }
     var count = 1;
-    var countEven = 1;
     for (; c <= 6; c++) {
         var td = document.createElement('td');
         if (count == todaysDate) {
             td.className = 'today';
         }
-        for (i in colorDay) {
-            let jour;
-            if (colorDay[i].m == mois && colorDay[i].a == annee) {
-                jour = colorDay[i].j;
-                if (count == jour) {
-                    td.className = "eventDate";
-                }
+        for (e in listEven) {
+            if (colorEvent(listEven[e].dateDebut).m == mois && colorEvent(listEven[e].dateDebut).a == annee &&
+                colorEvent(listEven[e].dateFin).m == mois && colorEvent(listEven[e].dateFin).a == annee) {
+                for (i = colorEvent(listEven[e].dateDebut).j; i <= colorEvent(listEven[e].dateFin).j; i++)
+                    if (count == i) {
+                        let c = listEven[e].colorEvent;
+                        //td.className = "eventDate";
+                        switch (c) {
+                            case 'orange':
+                                td.className = 'eventDateOrange'
+                                break;
+                            case 'yellow':
+                                td.className = 'eventDateYellow'
+                                break;
+                            case 'green':
+                                td.className = 'eventDateGreen'
+                                break;
+                            case 'blue':
+                                td.className = 'eventDateBlue'
+                                break;
+                            case 'red':
+                                td.className = 'eventDateRed'
+                                break;
+
+                            default:
+                                break;
+                        }
+                        //td.className = td.className===color;
+                        //  td.className = randomColor();
+                        //  console.log("La couleur 2 ", color);
+                        // td.className = get_random_color2();
+                    }
+                // if (count == colorEvent(listEven[e].dateDebut).j && count == colorEvent(listEven[e].dateFin).j) {
+                //     td.className = "eventDate";
+                // }
             }
         }
         td.innerHTML = count;
@@ -230,13 +251,74 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
             if (count == todaysDate) {
                 td.className = 'today';
             }
-            for (i in colorDay) {
-                let jour;
-                if (colorDay[i].m == mois && colorDay[i].a == annee) {
-                    jour = colorDay[i].j;
-                    if (count == jour) {
-                        td.className = "eventDate";
-                    }
+
+            for (e in listEven) {
+                if (colorEvent(listEven[e].dateDebut).m == mois && colorEvent(listEven[e].dateDebut).a == annee &&
+                    colorEvent(listEven[e].dateFin).m == mois && colorEvent(listEven[e].dateFin).a == annee) {
+                    for (i = colorEvent(listEven[e].dateDebut).j; i <= colorEvent(listEven[e].dateFin).j; i++)
+                        if (count == i) {
+                            let c = listEven[e].colorEvent;
+                            switch (c) {
+                                case 'orange':
+                                    td.className = 'eventDateOrange';
+                                    break;
+                                case 'yellow':
+                                    td.className = 'eventDateYellow';
+                                    break;
+                                case 'green':
+                                    td.className = 'eventDateGreen';
+                                    break;
+                                case 'blue':
+                                    td.className = 'eventDateBlue';
+                                    break;
+                                case 'red':
+                                    td.className = 'eventDateRed';
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            // td.className = "eventDate";
+
+                            //document.getElementsByClassName("eventDate").style.background= "red";
+                            // td.setProperty("background-color", "yellow");
+
+
+                            //td.style = c;
+                            //document.getElementsByClassName("eventDate").style.color=c;
+
+                            //table.setAttribute("id", "myTable");
+                            //td.setAttribute("eventDate", );
+                            if (document.getElementsByClassName("eventDate")) {
+                                //console.log("JJJJJJJJJJJJJJJJJJJJJJJJJJ");
+                                // var td = document.styleSheets[0].cssRules[0].style;
+                                // td.setProperty("background-color", "yellow");
+
+
+                                //document.getElementsByClassName("eventDate").style.background = c;
+                                //document.getElementsByClassName("eventDate").style.background = c;
+                            }
+
+
+
+                            //document.getElementsByName("eventDate").style.backgroundColor = c;
+
+
+                            //td.className = td.className===color;
+                            //document.getElementById("eventDate").style.backgroundColor = color
+                            //td.className = color;
+                            //td.className = randomColor();
+                            //console.log("La couleur 3 ", color);
+
+                            // let color = get_random_color2();
+                            // console.log("la couleur est : ", color);
+
+                            // td.className = color;
+
+                        }
+                    // if (count == colorEvent(listEven[e].dateDebut).j && count == colorEvent(listEven[e].dateFin).j) {
+                    //     td.className = "eventDate";
+                    // }
                 }
             }
             td.innerHTML = count;
@@ -247,6 +329,37 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
     }
     return table;
 }
+
+// function getRandomColor() {
+//     var letters = '0123456789ABCDEF';
+//     var color = '#';
+//     for (var i = 0; i < 6; i++) {
+//         color += letters[Math.floor(Math.random() * 16)];
+//     }
+//     return color;
+// }
+
+// function setRandomColor() {
+//     // $("#colorpad").css("background-color", getRandomColor());
+//     // Math.pow is slow, use constant instead.
+//     var color = Math.floor(Math.random() * 16777216).toString(16);
+//     // Avoid loops.
+//     return '#000000'.slice(0, -color.length) + color;
+// }
+
+// function get_random_color2() {
+//     var r = function () { return Math.floor(Math.random() * 256) };
+//     return "rgb(" + r() + "," + r() + "," + r() + ")";
+// }
+
+// function randomColor() {
+//     color = 'rgb(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ')';
+//     return color;
+// }
+
+
+
+
 
 function refreshCalendar(month, year) {
     let listCalendar = actualize(month, year);
