@@ -1,0 +1,18 @@
+    table {
+    border-collapse:collapse;
+    width:90%;
+    background-color : rgb(233, 233, 248);
+    }
+   th, td {
+    border:1px solid black;
+    width:20%;
+    }
+   td {
+    text-align:center;
+    }
+   caption {
+    font-weight:bold;
+    
+    }
+   
+    

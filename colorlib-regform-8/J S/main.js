@@ -164,7 +164,7 @@ function registre() {
   localStorage.setItem('tabUser', str)
 
   console.log(str);}
-
+  
   function login() {
     var tabUser = JSON.parse(localStorage.getItem('tabUser'))
     if (tabUser == null) {
@@ -180,3 +180,50 @@ function registre() {
         else
             console.log("erreur")
     }}
+
+    function displayUsers() {
+        var tableau = JSON.parse(localStorage.getItem('ttableau'))
+        if (tableau == null) {
+            tableau = []
+        }
+    
+        var html = `<br> 
+                <div class="box">
+                    <div class="box-header">
+                        <h1 class="box-title">Produits</h3> 
+                    </div>
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped" style="border:12px;">
+                            <thead>
+                                <tr>
+                                    <td>Id</td>
+                                    <td>Nom</td>
+                                    <td>Email</td>
+                                    <td>Mot de passe</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead> 
+                            </br>`
+        for (let i = 0; i < tableau.length; i++) {
+            html += ` <tbody><tr>
+                 <td>${tableau[i].id}</td>
+                 <td>${tableau[i].fname}</td>
+                 <td>${tableau[i].mail}</td>
+                 <td>${tableau[i].password}</td>
+                 <td><button onclick="deleteUser(${i})">Delete</button>
+             </tr></tbody>`
+    
+        }
+        html += `</table > `;
+        document.getElementById('table').innerHTML = html
+    }
+    function deleteUser(index) {
+        var tableau = JSON.parse(localStorage.getItem('tableau'))
+        if (tableau == null) {
+            tableau = []
+        }
+        tableau.splice(index, 1)
+        localStorage.setItem('tableau', JSON.stringify(tableau))
+        displayUsers()
+    
+    }

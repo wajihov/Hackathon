@@ -82,6 +82,7 @@ function Edit(index) {
     document.getElementById('edit').style.display = 'block';
     const todo = tabTask[index]
 
+    
     document.getElementById('taskE').value = todo.task
     document.getElementById('dateE').value = todo.date
     document.getElementById('QuantitéE').value = todo.Quantité
@@ -126,6 +127,12 @@ function SaveEdit() {
     localStorage.setItem('tabTask', JSON.stringify(tabTask))
     displayTask()
 }
+
+function getAllProducts (){
+    var tabTask = JSON.parse(localStorage.getItem('tabTask'));
+    console.log(tabTask);
+}
+
 function annuler (){
     var tabTask = JSON.parse(localStorage.getItem('tabTask'))
     if (tabTask == null) {

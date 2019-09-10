@@ -15,6 +15,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- fullCalendar -->
+  <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -228,8 +231,6 @@ desired effect
   </header>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
       <!-- Sidebar user panel (optional) -->
@@ -243,36 +244,31 @@ desired effect
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-
-      <!-- search form (Optional) -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-              </button>
-            </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-       
-        <li><a onclick="s2.style.visibility='hidden'" href="starter.html"><i class="fa fa-link" ></i> <span>dashboard</span></a></li>
-        
-        
-        <li><a onclick="s2.style.visibility='visible';d.style.visibility='hidden'"  href="produits.html"><i class="fa fa-link"></i> <span>Mes Produits</span></a></li>
-              
-        
-        <li><a onclick="s2.style.visibility='hidden'"><i class="fa fa-link"></i> <span>Profils</span></a></li>
-        <li class="treeview">
-          
-      <!-- /.sidebar-menu -->
+      
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header">HEADER</li>
+                <!-- Optionally, you can add icons to the links -->
+               
+                <li><a onclick="s2.style.visibility='hidden'" href="starter.html"><i class="fa fa-dashboard" ></i> <span>dashboard</span></a></li>
+                
+                <li class="treeview">
+                    <a href="#">
+                            <i class="fa fa-shopping-cart"></i> <span>Mes Produits</span>
+                      <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                      </span>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a href="ajouter.html"><i class="fa fa-cart-plus"></i>Ajouter</a></li>
+                      <li><a href="afficher.html"><i class="fa fa-cart-arrow-down"></i>Afficher</a></li>
+                    </ul>
+                  </li>
+                  <li><a onclick="s2.style.visibility='visible';d.style.visibility='hidden'"  href="profiles.html"><i class="fa fa-user-o"></i> <span>Profils</span></a></li>
+                  </ul>
+                  
+              <!-- /.sidebar-menu -->
     </section>
-    <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
@@ -280,28 +276,134 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header" id="d">
     
-     <br> <h2>dashboard </h2> </br>
-     <img src="./ch.jpg" style="width: 200px; height: 200px" alt="">
-     <img src="./bh.jpg" style="width: 200px; height: 200px" alt="">
-     <img src="./le monde.jpg" style="width: 200px; height: 200px" alt="">
-     <img src="./lire.jpg" style="width: 200px; height: 200px" alt="">
-     <img src="./livre.jpg" style="width: 200px; height: 200px" alt="">
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-        <li class="active">Here</li>
-      </ol>
+      <br> <h2>Dashboard </h2> </br>
+      <img src="./ch.jpg" style="width: 200px; height: 200px" alt="">
+      <img src="./bh.jpg" style="width: 200px; height: 200px" alt="">
+      <img src="./le monde.jpg" style="width: 200px; height: 200px" alt="">
+      <img src="./lire.jpg" style="width: 200px; height: 200px" alt="">
+      <img src="./livre.jpg" style="width: 200px; height: 200px" alt="">
+      <br>
+      <br>
+      <div class="box box-info">
+          <div class="box-header">
+            <i class="fa fa-envelope"></i>
+
+            <h3 class="box-title">Quick Email</h3>
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                      title="Remove">
+                <i class="fa fa-times"></i></button>
+            </div>
+            <!-- /. tools -->
+          </div>
+          <div class="box-body">
+            <form action="#" method="post">
+              <div class="form-group">
+                <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" placeholder="Subject">
+              </div>
+              <div>
+                <textarea class="textarea" placeholder="Message"
+                          style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="box-footer clearfix">
+            <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
+              <i class="fa fa-arrow-circle-right"></i></button>
+          </div>
+      </div>
+
+      <br>
+
+      <!-- Calendar -->
+      <div class="box box-solid bg-green-gradient">
+          <div class="box-header">
+            <i class="fa fa-calendar"></i>
+
+            <h3 class="box-title">Calendar</h3>
+            <!-- tools box -->
+            <div class="pull-right box-tools">
+              <!-- button with a dropdown -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bars"></i></button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li><a href="#">Add new event</a></li>
+                  <li><a href="#">Clear events</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">View calendar</a></li>
+                </ul>
+              </div>
+              <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+              </button>
+            </div>
+            <!-- /. tools -->
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body no-padding">
+            <!--The calendar -->
+            <div id="calendar" style="width: 100%"></div>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer text-black">
+            <div class="row">
+              <div class="col-sm-6">
+                <!-- Progress bars -->
+                <div class="clearfix">
+                  <span class="pull-left">Task #1</span>
+                  <small class="pull-right">90%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+                </div>
+
+                <div class="clearfix">
+                  <span class="pull-left">Task #2</span>
+                  <small class="pull-right">70%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-6">
+                <div class="clearfix">
+                  <span class="pull-left">Task #3</span>
+                  <small class="pull-right">60%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+                </div>
+
+                <div class="clearfix">
+                  <span class="pull-left">Task #4</span>
+                  <small class="pull-right">40%</small>
+                </div>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+        </div>
+
     </section>
 
     <!-- Main content -->
     <section class="content container-fluid" id="s2" style="visibility: hidden">
       <body onload="add()">
-      <div class="navbar">
-            
+      <div class="navbar">            
       </div>
   
-  
-      <div class="left">
-          
+      <div class="left">          
           <button class="getstarted" onclick="add()">ADD</button>
           <tr><br> <button class="getstarted" onclick="display()">Display</button></br></tr>
       </div>
@@ -464,6 +566,9 @@ desired effect
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<!-- fullCalendar -->
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

@@ -22,6 +22,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 
+  <!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -34,26 +37,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
         <link rel="stylesheet" href="./main.css">
 </head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -245,108 +229,74 @@ desired effect
       </div>
 
 
-      <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
-        <!-- Optionally, you can add icons to the links -->
-       
-        <li><a onclick="s2.style.visibility='hidden'" href="starter.html"><i class="fa fa-link" ></i> <span>dashboard</span></a></li>
-        
-        <li class="treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Mes Produits</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="ajouter.html"><i class="fa fa-circle-o"></i>Ajouter</a></li>
-              <li><a href="afficher.html"><i class="fa fa-circle-o"></i>Afficher</a></li>
-            </ul>
-          </li>
-         <li><a onclick="s2.style.visibility='visible';d.style.visibility='hidden'"  href="produits.html"><i class="fa fa-link"></i> <span>Mes Produits</span></a></li>            
-        <li><a onclick="s2.style.visibility='hidden'"><i class="fa fa-link" href="profiles.html"></i> <span>Profils</span></a></li>
-          </ul>
-          
-      <!-- /.sidebar-menu -->
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">HEADER</li>
+                    <!-- Optionally, you can add icons to the links -->
+                   
+                    <li><a onclick="s2.style.visibility='hidden'" href="starter.html"><i class="fa fa-dashboard" ></i> <span>dashboard</span></a></li>
+                    
+                    <li class="treeview">
+                        <a href="#">
+                                <i class="fa fa-shopping-cart"></i> <span>Mes Produits</span>
+                          <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                          </span>
+                        </a>
+                        <ul class="treeview-menu">
+                          <li><a href="ajouter.html"><i class="fa fa-cart-plus"></i>Ajouter</a></li>
+                          <li><a href="afficher.html"><i class="fa fa-cart-arrow-down"></i>Afficher</a></li>
+                        </ul>
+                      </li>
+                      <li><a onclick="s2.style.visibility='visible';d.style.visibility='hidden'"  href="profiles.html"><i class="fa fa-user-o"></i> <span>Profils</span></a></li>
+                      </ul>
+                      
+                  <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" >
+  <div class="content-wrapper"  >
     <!-- Content Header (Page header) -->
-    <section class="content-header" id="d">
-    
-    
-
-    <!-- Main content -->
-    
-     
-     
-            
-     
-  
-  
-      <div class="left">
-          
-          <button class="btn btn-primary btn-lg " onclick="add()">Ajouter &nbsp;</button><br>
-          <tr><br> <button class="btn btn-primary btn-lg" onclick="display()">Afficher</button></br></tr>
-      </div>
-  
-  
+    <section class="content-header" id="d" >  
       <div class="right">
-          <div id="add">
+
+        
+  
+
+          <br>
+          <div class="box-body" style="margin-bottom: 20px;">
+                
+                <script type="text/javascript" >
+                    $(document).ready(function() {
+                        displayTask();
+                    });
+                </script>
+                
+              </div>
               
-              <br> <label><h3>Nom</h3</label></br>
-              <input class="ipt" type="text" id="task"placeholder="Nom">
-  
-              <br> <label><h3>Description</h3</label></br>
-              <input class="ipt" type="text" id="date" placeholder="Description">
-  
-              <br> <label> <h3>Quantité</h3</label></br>
-              <input class="ipt" type="number" id="Quantité" placeholder="Quantité">
-  
-              <br> <label><h3>Prix</h3</label></br>
-              <input class="ipt" type="number" id="Prix" placeholder="Prix"> 
-  
-              <br>
-              <label> <h3></h3>image</h3</label><br />
-  
-              <input class="ipt" type="file" id="img" placeholder="image">
-              <div class="image-container">
-                  <img src="" id="image" />
-              </div></br>
-  
-  
-              <!--   <br> <label>Image</label>
-          <input type="image" id="image" > </br> -->
-              <input class="btn btn-primary btn-lg"  type="button"  value="Add" onclick="addTask()">
-          </div>
-  
-  
-          <div id="edit">
-  
-              <label>Nom</label>
-              <input type="text" id="taskE">
-              <br> <label>Description</label>
-              <input type="text" id="dateE"> </br>
-              <br> <label>Quantité</label>
-              <input type="number" id="QuantitéE"> </br>
-              <br> <label>Prix</label>
-              <input type="number" id="PrixE"> </br>
-              <br> <label>Image</label>
-              <input type="image" id="imageE"> </br>
-              <input type="text" id="index"> </br>
-              <input type="button" value="Save" onclick="SaveEdit()">
-              <input type="button" value="Annuler" onclick="annuler()">
-          </div>
-          <div id='table'>
-  
-          </div>
       </div>
-       
-      
+      <div id='table'>
+          
+        </div>
+      <div id="edit">
+  
+            <label>Nom</label>
+            <br><input type="text" id="taskE"><br>
+            <label>Description</label><br>
+            <input type="text" id="dateE"><br>
+            <label>Quantité</label><br>
+            <input type="number" id="QuantitéE"> <br>
+            <label>Prix</label><br>
+            <input type="number" id="PrixE"> <br>
+            <label>Image</label><br>
+            <input type="image" id="imageE"> <br>
+            <input type="text" id="index"> <br>
+            <input type="button" value="Save" onclick="SaveEdit()"  style="background-color: #3c8dbc; color: white; border-radius: 7px; " >
+            <input type="button" value="Annuler" onclick="annuler()" style="background-color: #3c8dbc; color: white; border-radius: 7px;">
+        </div>
+
    
   
     </section>
@@ -355,7 +305,7 @@ desired effect
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+  <footer class="main-footer" >
     <!-- To the right -->
     <div class="pull-right hidden-xs">
       Anything you want
@@ -446,8 +396,7 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 <script src="./main.js"></script>
 
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
@@ -458,3 +407,44 @@ desired effect
      user experience. -->
 </body>
 </html>
+
+<script>
+function displayTask() {
+    var tabTask = JSON.parse(localStorage.getItem('tabTask'))
+    if (tabTask == null) {
+        tabTask = []
+    }
+
+    var html = `<br> 
+            <div class="box">
+                <div class="box-header">
+                    <h1 class="box-title">Produits</h3> 
+                </div>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped" style="border:12px;">
+                        <thead>
+                            <tr>
+                                <td>Nom</td>
+                                <td>Description</td>
+                                <td>Quantité</td>
+                                <td>Prix</td>
+                                <td>image</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead> 
+                        </br>`
+    for (let i = 0; i < tabTask.length; i++) {
+        html += ` <tbody><tr>
+             <td>${tabTask[i].task}</td>
+             <td>${tabTask[i].date}</td>
+             <td>${tabTask[i].Quantité}</td>
+             <td>${tabTask[i].Prix}</td>
+             <td><img height ='150' width='150' src='C:/Users/pc/Desktop/table/image/${tabTask[i].image}'</td>
+             <td><button onclick="deleteTask(${i})" style="background-color: #3c8dbc; color: white; border-radius: 7px; ">Delete</button>
+             <button onclick="Edit(${i})" style="background-color: #3c8dbc; color: white; border-radius: 7px; ">Edit</button>
+         </tr></tbody>`
+
+    }
+    html += `</table > `;
+    document.getElementById('table').innerHTML = html
+}</script>
