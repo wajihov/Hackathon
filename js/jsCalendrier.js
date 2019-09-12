@@ -8,8 +8,7 @@ let day_week = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 let month = d.getMonth();   //0-11
 let year = d.getFullYear(); //2019
 let activateDateToday;
-let event;
-
+let indexID = null;
 window.onload = function () {
     actualize(month, year);
     refreshCalendar(month, year);
@@ -17,21 +16,21 @@ window.onload = function () {
 
 function clickAddEvent() {
     var tds = document.getElementsByTagName("td");
-    for (var i in tds) tds[i].onclick = addEvent;
+    for (var i in tds)
+        tds[i].onclick = addEvent;
 }
 
 function addEvent() {
     table = document.getElementById("myTable");
     for (var i = 0; i < table.rows.length; i++) {
         for (var j = 0; j < table.rows[i].cells.length; j++)
-            table.rows[i].cells[j].onclick = function () { getval(this); };
+            table.rows[i].cells[j].onclick = function () {
+                getval(this);
+            };
     }
 }
 
 function ajouterEvenement() {
-
-    console.log("Helooo");
-
     let dateDebut = document.getElementById("startDate").value;
     let dateFin = document.getElementById("endDate").value;
 
@@ -42,19 +41,47 @@ function ajouterEvenement() {
         modal.style.display = "block";
     }
     else {
-        document.getElementById("error").innerHTML = "";
-        let listEven = JSON.parse(localStorage.getItem("MyEvents")) || [];
-        let idSte = JSON.parse(localStorage.getItem("actifUser"));
-        const evenement = {
-            idSociete: idSte,
-            idEvent: Math.random().toString(36).substr(2, 9),
-            description: document.getElementById("txtDesc").value,
-            dateDebut: document.getElementById("startDate").value,
-            dateFin: document.getElementById("endDate").value,
-            colorEvent: verifColor(dateDebut, dateFin)
+        //document.getElementById("error").innerHTML = "";
+        console.log("L'index est : ", indexID);
+
+        if (indexID == null) {
+            console.log("Dans Ajouter Evenement");
+            let listEven = JSON.parse(localStorage.getItem("MyEvents")) || [];
+            let idSte = JSON.parse(localStorage.getItem("actifUser"));
+            const evenement = {
+                idSociete: idSte,
+                idEvent: Math.random().toString(36).substr(2, 9),
+                description: document.getElementById("txtDesc").value,
+                dateDebut: document.getElementById("startDate").value,
+                dateFin: document.getElementById("endDate").value,
+                colorEvent: verifColor(dateDebut, dateFin)
+            }
+            listEven.push(evenement);
+            localStorage.setItem("MyEvents", JSON.stringify(listEven));
         }
-        listEven.push(evenement);
-        localStorage.setItem("MyEvents", JSON.stringify(listEven));
+
+        else if (indexID != null) {
+            let listEven = JSON.parse(localStorage.getItem("MyEvents"));
+            let idSte = JSON.parse(localStorage.getItem("actifUser"));
+            for (e = 0; e < listEven.length; e++) {
+                if (listEven[e].idEvent == indexID) {
+                    const evenement = {
+                        idSociete: idSte,
+                        idEvent: indexID,
+                        description: document.getElementById("txtDesc").value,
+                        dateDebut: document.getElementById("startDate").value,
+                        dateFin: document.getElementById("endDate").value,
+                        colorEvent: listEven[e].colorEvent
+                    }
+                    listEven[e] = evenement;
+                    break;
+                }
+            }
+            localStorage.setItem("MyEvents", JSON.stringify(listEven));
+            returnAddEvent();
+        }
+        indexID = null;
+        document.getElementById("save").innerHTML = "Save";
     }
     var modal = document.getElementById("myModal");
     modal.style.display = "none";
@@ -62,14 +89,15 @@ function ajouterEvenement() {
     refreshCalendar(month, year);
 };
 
+
+function returnAddEvent() {
+    document.getElementById("save").innerHTML = "Save";
+    indexID = null;
+    //document.getElementById("delete").style.display = "none";
+}
+
 function verifColor(debut, fin) {
-
     console.log("debut ", colorEvent(debut), " ", colorEvent(fin));
-
-    let moiS = colorEvent(debut).m;
-    let anneE = colorEvent(debut).a;
-    let moiS2 = colorEvent(fin).m;
-    let anneE2 = colorEvent(fin).a;
     let listEven = JSON.parse(localStorage.getItem("MyEvents"));
     colorChoisi = ColorList[Math.floor(Math.random() * ColorList.length)];
     if (listEven != null) {
@@ -83,12 +111,69 @@ function verifColor(debut, fin) {
             }
         }
     }
-
     return colorChoisi;
 }
 
+function insertTableEvent(mois, annee) {
+    removeTable();
+    let afficheEventTable = JSON.parse(localStorage.getItem("MyEvents"));
+    if (afficheEventTable == null) {
+        document.getElementById("EventTableList").style.display = "none";
+    }
+    else {
+        document.getElementById("EventTableList").style.display = "block";
+        // console.log("La taille : ", afficheEventTable.length);
+        // let table = document.getElementById("Entete");
+        // let row = table.insertRow(table.length);
+        // let th1 = row.insertCell(0);
+        // th1.innerHTML = "Description";
+        // let th2 = row.insertCell(1);
+        // th2.innerHTML = "Date debut";
+        // let th3 = row.insertCell(2);
+        // th3.innerHTML = "Date Fin";
+        for (e = 0; e < afficheEventTable.length; e++) {
+            if (mois == colorEvent(afficheEventTable[e].dateDebut).m
+                && annee == colorEvent(afficheEventTable[e].dateDebut).a) {
+                let table = document.getElementById("EventTableList");
+                let row = table.insertRow(table.length);
+                let cell1 = row.insertCell(0);
+                cell1.innerHTML = afficheEventTable[e].description;
+                let cell2 = row.insertCell(1);
+                cell2.innerHTML = afficheEventTable[e].dateDebut;
+                let cell3 = row.insertCell(2);
+                cell3.innerHTML = afficheEventTable[e].dateFin;
+            }
+            // let cell2 = row.insertCell(1);
+            // cell2.innerHTML = afficheEventTable[e].colorEvent;
+        }
+    }
+}
+
+
 function getval(cel) {
+
+    let listEvent = JSON.parse(localStorage.getItem("MyEvents"));
+    let dtDebut;
+    let dtFin;
+    let desc;
+
+    if (listEvent != null) {
+        for (e = 0; e < listEvent.length; e++) {
+            if (colorEvent(listEvent[e].dateDebut).m == month && colorEvent(listEvent[e].dateDebut).a == year) {
+                if (colorEvent(listEvent[e].dateDebut).j <= parseInt(cel.innerHTML) &&
+                    colorEvent(listEvent[e].dateFin).j >= parseInt(cel.innerHTML)) {
+                    console.log("Existe");
+                    indexID = listEvent[e].idEvent;
+                    dtDebut = listEvent[e].dateDebut;
+                    dtFin = listEvent[e].dateFin;
+                    desc = listEvent[e].description;
+                }
+            }
+        }
+    }
     month += 1;
+    let selectDate;
+    let dateFin;
     if (month < 10) {
         month = '0' + month.toString();
     }
@@ -96,20 +181,36 @@ function getval(cel) {
     if (day < 10) {
         day = '0' + day.toString();
     }
-    let selectDate = year + "-" + month + "-" + day;
+    if (indexID != null) {
+        document.getElementById('txtDesc').value = desc;
+        document.getElementById('startDate').value = dtDebut;
+        document.getElementById('endDate').value = dtFin;
+        document.getElementById("save").innerHTML = "Mettre à jours";
+        document.getElementById('addButton').innerHTML =
+            '<button type="button" class="btn btn-primary" id="delete" onclick="SupprimerEvenement(`${indexID}`)">Delete</button>'
+    }
+    else {
+        selectDate = year + "-" + month + "-" + day;
+        document.getElementById('startDate').value = selectDate;
+        document.getElementById("save").innerHTML = "Save";
+    }
+
     month -= 1;
     var modal = document.getElementById("myModal");
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
+    // if (span != null) {
+    //     indexID = null;
+    // }
+
     // When the user clicks the button, open the modal 
     modal.style.display = "block";
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
         resetModal();
+        indexID = null;
     }
-    document.getElementById('startDate').value = selectDate;
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
@@ -118,10 +219,31 @@ function getval(cel) {
     }
 }
 
+function SupprimerEvenement(indexID) {
+    let listEven = JSON.parse(localStorage.getItem("MyEvents"));
+    if (confirm("Are you sure to delete this Event?")) {
+        for (e = 0; e < listEven.length; e++) {
+            if (listEven[e].idEvent==indexID) {
+                listEven.splice(e, 1);
+                break;
+            }
+        }
+        localStorage.setItem("MyEvents", JSON.stringify(listEven));
+    }
+    let modal = document.getElementById("myModal");
+    modal.style.display = "none";
+    resetModal();
+    refreshCalendar(month, year);
+    
+}
+
 function resetModal() {
     document.getElementById("txtDesc").value = "";
     document.getElementById("startDate").value = "";
-    document.getElementById("endDate").value = "";
+    document.getElementById("endDate").value = "";    
+    indexID == null;
+    document.getElementById("save").innerHTML = "Save";    
+    document.getElementById('addButton').innerHTML="";
 }
 
 function todayDay(month, year) {
@@ -153,14 +275,8 @@ function colorEvent(datEvt) {
     return { j, m, a };
 }
 
-
 function get_calendar(day_no, days, activateDateToday, mois, annee) {
     var todaysDate;
-    // var colorDay = [colorEvent("september , 2019 12"), colorEvent("september , 2019 21"),
-    // colorEvent("september , 2019 1"), colorEvent("september , 2019 25"), colorEvent("August , 2019 29")
-    //     , colorEvent("October , 2019 22"), colorEvent("january , 2019 10"), colorEvent("November , 2019 30")
-    //     , colorEvent("November , 2019 4")];
-
     let listEven = JSON.parse(localStorage.getItem("MyEvents"));
     console.log("le mois ", mois, " / ", annee);
     if (activateDateToday == true) {
@@ -186,7 +302,7 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
         if (c == day_no) {
             break;
         }
-        var td = document.createElement('td');
+        let td = document.createElement('td');
         td.innerHTML = "";
         tr.appendChild(td);
     }
@@ -219,18 +335,11 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
                             case 'red':
                                 td.className = 'eventDateRed'
                                 break;
-
                             default:
                                 break;
                         }
-                        //td.className = td.className===color;
-                        //  td.className = randomColor();
-                        //  console.log("La couleur 2 ", color);
-                        // td.className = get_random_color2();
                     }
-                // if (count == colorEvent(listEven[e].dateDebut).j && count == colorEvent(listEven[e].dateFin).j) {
-                //     td.className = "eventDate";
-                // }
+
             }
         }
         td.innerHTML = count;
@@ -277,48 +386,10 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
                                 default:
                                     break;
                             }
-
                             // td.className = "eventDate";
-
                             //document.getElementsByClassName("eventDate").style.background= "red";
                             // td.setProperty("background-color", "yellow");
-
-
-                            //td.style = c;
-                            //document.getElementsByClassName("eventDate").style.color=c;
-
-                            //table.setAttribute("id", "myTable");
-                            //td.setAttribute("eventDate", );
-                            if (document.getElementsByClassName("eventDate")) {
-                                //console.log("JJJJJJJJJJJJJJJJJJJJJJJJJJ");
-                                // var td = document.styleSheets[0].cssRules[0].style;
-                                // td.setProperty("background-color", "yellow");
-
-
-                                //document.getElementsByClassName("eventDate").style.background = c;
-                                //document.getElementsByClassName("eventDate").style.background = c;
-                            }
-
-
-
-                            //document.getElementsByName("eventDate").style.backgroundColor = c;
-
-
-                            //td.className = td.className===color;
-                            //document.getElementById("eventDate").style.backgroundColor = color
-                            //td.className = color;
-                            //td.className = randomColor();
-                            //console.log("La couleur 3 ", color);
-
-                            // let color = get_random_color2();
-                            // console.log("la couleur est : ", color);
-
-                            // td.className = color;
-
                         }
-                    // if (count == colorEvent(listEven[e].dateDebut).j && count == colorEvent(listEven[e].dateFin).j) {
-                    //     td.className = "eventDate";
-                    // }
                 }
             }
             td.innerHTML = count;
@@ -330,36 +401,10 @@ function get_calendar(day_no, days, activateDateToday, mois, annee) {
     return table;
 }
 
-// function getRandomColor() {
-//     var letters = '0123456789ABCDEF';
-//     var color = '#';
-//     for (var i = 0; i < 6; i++) {
-//         color += letters[Math.floor(Math.random() * 16)];
-//     }
-//     return color;
-// }
-
-// function setRandomColor() {
-//     // $("#colorpad").css("background-color", getRandomColor());
-//     // Math.pow is slow, use constant instead.
-//     var color = Math.floor(Math.random() * 16777216).toString(16);
-//     // Avoid loops.
-//     return '#000000'.slice(0, -color.length) + color;
-// }
-
-// function get_random_color2() {
-//     var r = function () { return Math.floor(Math.random() * 256) };
-//     return "rgb(" + r() + "," + r() + "," + r() + ")";
-// }
-
 // function randomColor() {
 //     color = 'rgb(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ')';
 //     return color;
 // }
-
-
-
-
 
 function refreshCalendar(month, year) {
     let listCalendar = actualize(month, year);
@@ -371,6 +416,16 @@ function refreshCalendar(month, year) {
     document.getElementById("calendar-month-year").innerHTML = month_name[month] + " " + year;
     document.getElementById("calendar-dates").appendChild(calendar);
     clickAddEvent();
+    insertTableEvent(month, year);
+}
+
+function removeTable() {
+    let tableHeaderRowCount = 0;
+    let table = document.getElementById('EventTableList');
+    let rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+        table.deleteRow(tableHeaderRowCount);
+    }
 }
 
 function next() {

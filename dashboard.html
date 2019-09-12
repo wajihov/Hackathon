@@ -82,9 +82,8 @@
                             <h5>home <span></span>Dashboard </h5>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+
+
     </section>
     <img style="width: 100%; height:430px" src="img/event.jpg" alt="">
 
@@ -126,13 +125,13 @@
                                     <button class="btn btn-outline-primary col-sm-2"
                                         onclick="nextYear()">&#62&#62</button>
                                 </div>
-                                <div id="calendar-dates">
+                                <div id="calendar-dates" class="">
                                 </div>
                             </div>
 
                             <!-- The Modal -->
-                            <div id="myModal" class="modal">
-                                <!-- Modal content -->
+                            <!-- <div id="myModal" class="modal">
+                                Modal content
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <span class="close">&times;</span>
@@ -141,30 +140,28 @@
                                         <div class="form-group">
                                             <label for="desc">Description:</label>
                                             <input type="text" class="form-control" id="txtDesc"
-                                                placeholder="Enter la tâche...">
+                                                placeholder="Enter la tâche">
                                         </div>
                                         <div class="form-group">
                                             <label for="dateDebut">Date debut:</label>
-                                            <input type="date" class="form-control" id="startDate" readonly>
+                                            <input type="date" class="form-control" id="startDate">
                                         </div>
                                         <div class="form-group">
                                             <label for="dateFin">Date Fin:</label>
                                             <input type="date" class="form-control" id="endDate">
-                                            <span id="error"></span>
                                         </div>
 
-                                        <button type="button" class="btn btn-primary" onclick="ajouterEvenement()"
-                                            id="saveEvent">Submit</button>
+                                        <button type="submit" class="btn btn-primary" >Submit</button>
                                     </div>
-                                    <!-- <div class="modal-footer">
+                                    <div class="modal-footer">
                                             <h3>Modal Footer</h3>
-                                        </div> -->
+                                        </div>
                                 </div>
 
-                            </div>
+                            </div> -->
                         </article>
 
-                        <article class="blog_item">
+                        <!-- <article class="blog_item">
                             <div class="blog_item_img">
                                 <img class="card-img rounded-0" src="img/blog/single_blog_2.png" alt="">
                                 <a href="#" class="blog_item_date">
@@ -271,12 +268,12 @@
                                     </a>
                                 </li>
                             </ul>
-                        </nav>
+                        </nav> -->
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
-                        <aside class="single_sidebar_widget search_widget">
+                        <!-- <aside class="single_sidebar_widget search_widget">
                             <form action="#">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
@@ -291,51 +288,24 @@
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1"
                                     type="submit">Search</button>
                             </form>
-                        </aside>
+                        </aside> -->
 
                         <aside class="single_sidebar_widget post_category_widget">
-                            <h4 class="widget_title">Category</h4>
-                            <ul class="list cat-list">
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Resaurant food</p>
-                                        <p>(37)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Travel news</p>
-                                        <p>(10)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Modern technology</p>
-                                        <p>(03)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Product</p>
-                                        <p>(11)</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Inspiration</p>
-                                        <p>21</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="d-flex">
-                                        <p>Health Care (21)</p>
-                                        <p>09</p>
-                                    </a>
-                                </li>
-                            </ul>
+                            <h4   class="widget_title">Evenement</h4>
+                            <table id="EventTableList" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <td>Description</td>
+                                            <td>Date Debut</td>
+                                            <td>Date fin</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
                         </aside>
 
-                        <aside class="single_sidebar_widget popular_post_widget">
+                        <!-- <aside class="single_sidebar_widget popular_post_widget">
                             <h3 class="widget_title">Recent Post</h3>
                             <div class="media post_item">
                                 <img src="img/post/post_1.png" alt="post">
@@ -439,10 +409,10 @@
                                     </a>
                                 </li>
                             </ul>
-                        </aside>
+                        </aside> -->
 
 
-                        <aside class="single_sidebar_widget newsletter_widget">
+                        <!-- <aside class="single_sidebar_widget newsletter_widget">
                             <h4 class="widget_title">Newsletter</h4>
 
                             <form action="#">
@@ -453,7 +423,7 @@
                                 <button class="button rounded-0 primary-bg text-white w-100 btn_1"
                                     type="submit">Subscribe</button>
                             </form>
-                        </aside>
+                        </aside> -->
                     </div>
                 </div>
             </div>
@@ -577,6 +547,7 @@
     <!-- custom js -->
     <script src="js/custom.js"></script>
     <script src="js/jsCalendrier.js"></script>
+    <script type="text/javascript" src="collorlib/condidat.js"></script>
 
 </body>
 
