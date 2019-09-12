@@ -37,11 +37,11 @@ function displayTask() {
 
     var html = `<br> <table border="1" style="height=30px">
     <tr>
-        <td><h1>Nom</h1></td>
-        <td><h1>Description</h1></td>
-        <td><h1>Quantité</h1></td>
-        <td><h1>Prix</h1></td>
-        <td><h1>image</h1></td>
+        <td>Nom</td>
+        <td>Description</td>
+        <td>Quantité</td>
+        <td>Prix</td>
+        <td>Image</td>
         
     </tr></br>`
     for (let i = 0; i < tabTask.length; i++) {
